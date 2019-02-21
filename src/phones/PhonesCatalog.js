@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PhonesCatalog = ({ phones }) => {
+const PhonesCatalog = ({ phones, onPhoneSelected }) => {
   return (
     <ul className="phones">
       { phones.map(phone => (
@@ -8,7 +8,11 @@ const PhonesCatalog = ({ phones }) => {
         <li className="thumbnail" key={phone.id}>
           <span>### { phone.age }</span>
 
-          <a className="thumb" href={'#' + phone.id}>
+          <a
+            className="thumb"
+            href={'#' + phone.id}
+            onClick={() => onPhoneSelected(phone)}
+          >
             <img
               alt={ phone.name }
               src={ phone.imageUrl }
@@ -21,7 +25,10 @@ const PhonesCatalog = ({ phones }) => {
             </button>
           </div>
 
-          <a href={'#' + phone.id}>
+          <a
+            href={'#' + phone.id}
+            onClick={() => onPhoneSelected(phone)}
+          >
             { phone.name }
           </a>
 
