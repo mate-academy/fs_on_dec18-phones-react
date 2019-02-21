@@ -16,13 +16,15 @@ export default class PhonesPage extends React.Component {
     this.onPhoneSelected = this.onPhoneSelected.bind(this);
   }
 
-  async componentDidMount() {
-    const response = await fetch(`${ BASE_URL }/phones/phones.json`);
-    const phones = await response.json();
+  componentDidMount() {
+    setTimeout(async () => {
+      const response = await fetch(`${ BASE_URL }/phones/phones.json`);
+      const phones = await response.json();
 
-    this.setState({
-      phones,
-    });
+      this.setState({
+        phones,
+      });
+    }, 3000);
   }
 
   async onPhoneSelected(phone) {
@@ -54,9 +56,7 @@ export default class PhonesPage extends React.Component {
             <div data-component="pagination2"></div>
 
             { this.state.selectedPhone
-              ? (
-                <PhoneViewer phone={this.state.selectedPhone} />
-              )
+              ? <PhoneViewer phone={this.state.selectedPhone} />
               : (
                 <PhonesCatalog
                   phones={this.state.phones}

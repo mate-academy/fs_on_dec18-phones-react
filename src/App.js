@@ -2,12 +2,14 @@ import React from 'react';
 import PhonesPage from './phones/PhonesPage';
 import './App.css';
 
-const App = () => (
-  <div className="App">
-    <div className="container-fluid">
-      <PhonesPage />
+const App = () => {
+  return (
+    <div className="App">
+      <div className="container-fluid">
+        <PhonesPage />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default App;

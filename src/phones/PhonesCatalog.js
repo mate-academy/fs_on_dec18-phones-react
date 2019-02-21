@@ -1,6 +1,10 @@
 import React from 'react';
 
 const PhonesCatalog = ({ phones, onPhoneSelected }) => {
+  if (phones.length === 0) {
+    return <p>No pones</p>;
+  }
+
   return (
     <ul className="phones">
       { phones.map(phone => (
@@ -11,7 +15,9 @@ const PhonesCatalog = ({ phones, onPhoneSelected }) => {
           <a
             className="thumb"
             href={'#' + phone.id}
-            onClick={() => onPhoneSelected(phone)}
+            onClick={() => {
+              onPhoneSelected(phone);
+            }}
           >
             <img
               alt={ phone.name }
