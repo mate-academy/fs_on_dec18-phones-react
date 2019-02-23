@@ -1,13 +1,13 @@
 import React from 'react';
 
-class ShoppingCart {
+class ShoppingCart extends React.Component {
   render() {
     return (
       <div className="ShoppingCart">
         <h4>Shopping Cart</h4>
 
         <ul>
-          { itemIds.map(itemId => (
+          { [].map(itemId => (
 
             <li>
               { itemId } ({ this._itemsMap[itemId] })

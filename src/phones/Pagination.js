@@ -8,12 +8,12 @@ class PhonesPage {
 
         <select data-element="per-page-select">
           { [3, 5, 10, 20].map(option => (
-          <option
-            value={ option }
-            { +option === perPage ? 'selected' : '' }
-          >
-            ${ option }
-          </option>
+            <option
+              value={ option }
+              { +option === perPage ? 'selected' : '' }
+            >
+              ${ option }
+            </option>
           )) }
           <option></option>
         </select>

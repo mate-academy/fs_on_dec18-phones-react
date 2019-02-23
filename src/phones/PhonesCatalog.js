@@ -1,4 +1,5 @@
 import React from 'react';
+const BASE_IMG_URL = 'https://mate-academy.github.io/fs_on_dec18/public/';
 
 const PhonesCatalog = ({ phones, onPhoneSelected }) => {
   if (phones.length === 0) {
@@ -7,10 +8,9 @@ const PhonesCatalog = ({ phones, onPhoneSelected }) => {
 
   return (
     <ul className="phones">
-      { phones.map(phone => (
-
+      {phones.map(phone => (
         <li className="thumbnail" key={phone.id}>
-          <span>### { phone.age }</span>
+          <b>[#{phone.age}] </b>
 
           <a
             className="thumb"
@@ -20,27 +20,21 @@ const PhonesCatalog = ({ phones, onPhoneSelected }) => {
             }}
           >
             <img
-              alt={ phone.name }
-              src={ phone.imageUrl }
+              alt={phone.name}
+              src={BASE_IMG_URL + phone.imageUrl}
             />
           </a>
 
           <div className="phones__btn-buy-wrapper">
-            <button className="btn btn-success">
-              Add
-            </button>
+            <button className="btn btn-success">Add</button>
           </div>
 
-          <a
-            href={'#' + phone.id}
-            onClick={() => onPhoneSelected(phone)}
-          >
-            { phone.name }
+          <a href={'#' + phone.id} onClick={() => onPhoneSelected(phone)}>
+            {phone.name}
           </a>
 
-          <p>{ phone.snippet }</p>
+          <p>{phone.snippet}</p>
         </li>
-
       ))}
     </ul>
   );
