@@ -1,6 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Filter extends React.Component {
+  static propTypes = {
+    query: PropTypes.string,
+  };
+
+  static defaultProps = {
+    query: '',
+  };
+
   render() {
     const { onQueryChanged, onOrderChanged } = this.props;
     const { query, orderBy } = this.props;
@@ -10,7 +19,7 @@ class Filter extends React.Component {
         <input
           type="text"
           value={query}
-          onChange={(event) => {
+          onChange={event => {
             onQueryChanged(event.target.value);
           }}
         />
@@ -18,7 +27,7 @@ class Filter extends React.Component {
         <select
           name="orderBy"
           value={orderBy}
-          onChange={(event) => {
+          onChange={event => {
             onOrderChanged(event.target.value);
           }}
         >
@@ -32,6 +41,5 @@ class Filter extends React.Component {
 
 Filter.ORDER_BY_AGE = 'age';
 Filter.ORDER_BY_NAME = 'name';
-
 
 export default Filter;

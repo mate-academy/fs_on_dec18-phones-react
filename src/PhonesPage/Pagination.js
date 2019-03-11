@@ -1,6 +1,6 @@
 import React from 'react';
 
-class PhonesPage {
+class Pagination extends React.Component {
   render() {
     return (
       <div className="Pagination">
@@ -8,12 +8,12 @@ class PhonesPage {
 
         <select data-element="per-page-select">
           { [3, 5, 10, 20].map(option => (
-            <option
-              value={ option }
-              { +option === perPage ? 'selected' : '' }
-            >
-              ${ option }
-            </option>
+          <option
+            value={ option }
+            { +option === perPage ? 'selected' : '' }
+          >
+            ${ option }
+          </option>
           )) }
           <option></option>
         </select>
@@ -36,4 +36,4 @@ class PhonesPage {
   }
 }
 
-export default PhonesPage;
+export default Pagination;
