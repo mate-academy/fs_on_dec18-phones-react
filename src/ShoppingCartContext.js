@@ -2,8 +2,6 @@ import React from 'react';
 
 export const ShoppingCartContext = React.createContext();
 
-const { Consumer, Provider } = ShoppingCartContext;
-
 export const withShoppingCart = OriginalComponent => {
   return wrapperProps => (
     <ShoppingCartContext.Consumer>

@@ -8,7 +8,6 @@ import { getAll as getAllPhones } from '../api/phones';
 
 export default class PhonesPage extends React.Component {
   static contextType = ShoppingCartContext;
-  // PhonesPage.contextType = ShoppingCartContext;
 
   state = {
     phones: [],
@@ -17,12 +16,16 @@ export default class PhonesPage extends React.Component {
   };
 
   componentDidMount() {
+    this.loadPhones();
+  }
+
+  loadPhones = () => {
     const { orderBy, query } = this.state;
 
     getAllPhones({ orderBy, query }).then(phones => {
       this.setState({ phones });
     });
-  }
+  };
 
   render() {
     return (
@@ -35,10 +38,10 @@ export default class PhonesPage extends React.Component {
                 query={this.state.query}
                 orderBy={this.state.orderBy}
                 onQueryChanged={query => {
-                  this.setState({ query }, () => this.loadPhones());
+                  this.setState({ query }, this.loadPhones);
                 }}
                 onOrderChanged={orderBy => {
-                  this.setState({ orderBy }, () => this.loadPhones());
+                  this.setState({ orderBy }, this.loadPhones);
                 }}
               />
             </section>
