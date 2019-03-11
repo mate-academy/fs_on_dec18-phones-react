@@ -11,16 +11,24 @@ export default class PhonesPage extends React.Component {
 
   state = {
     phones: [],
-    query: '',
-    orderBy: Filter.ORDER_BY_AGE,
   };
 
   componentDidMount() {
     this.loadPhones();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.search === this.props.location.search) {
+      return;
+    }
+
+    this.loadPhones()
+  }
+
   loadPhones = () => {
-    const { orderBy, query } = this.state;
+    const params = new URLSearchParams(this.props.location.search);
+    const query = params.get('query') || '';
+    const orderBy = params.get('orderBy') || Filter.ORDER_BY_AGE;
 
     getAllPhones({ orderBy, query }).then(phones => {
       this.setState({ phones });
@@ -34,16 +42,7 @@ export default class PhonesPage extends React.Component {
           <div className="col-md-2" data-element="sidebar">
             <section>
               <h3>{this.context.items.length} items in Basket</h3>
-              <Filter
-                query={this.state.query}
-                orderBy={this.state.orderBy}
-                onQueryChanged={query => {
-                  this.setState({ query }, this.loadPhones);
-                }}
-                onOrderChanged={orderBy => {
-                  this.setState({ orderBy }, this.loadPhones);
-                }}
-              />
+              <Filter />
             </section>
 
             <section>
