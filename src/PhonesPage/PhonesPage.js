@@ -17,11 +17,15 @@ export default class PhonesPage extends React.Component {
     this.loadPhones();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.location.search === this.props.location.search) {
-      return;
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.location.search === this.props.location.search) {
+      return false;
     }
 
+    return true;
+  }
+
+  componentDidUpdate(prevProps) {
     this.loadPhones()
   }
 
@@ -36,6 +40,8 @@ export default class PhonesPage extends React.Component {
   };
 
   render() {
+    console.log('render PhonesPage');
+
     return (
       <div className="PhonesPage">
         <div className="row">
