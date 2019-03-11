@@ -1,28 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import { Route, NavLink, Switch } from 'react-router-dom';
+
+import PhoneDetailsPage from './PhoneDetailsPage';
+import PhonesPage from './PhonesPage';
+
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div className="App">
+    <header style={{ padding: 10 }}>
+      <ul className="nav nav-pills">
+        <li role="presentation">
+          <NavLink to="/">Home</NavLink>
+        </li>
+        <li role="presentation">
+          <NavLink to="/phones">Phones</NavLink>
+        </li>
+      </ul>
+    </header>
+
+    <div className="container-fluid">
+      <Switch>
+        <Route exact path="/" render={() => <h1>Home Page</h1>} />
+        <Route path="/phones/:phoneId" component={PhoneDetailsPage} />
+        <Route path="/phones" component={PhonesPage} />
+      </Switch>
+    </div>
+  </div>
+);
 
 export default App;
