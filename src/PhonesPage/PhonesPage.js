@@ -17,15 +17,11 @@ export default class PhonesPage extends React.Component {
     this.loadPhones();
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (nextProps.location.search === this.props.location.search) {
-      return false;
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.search === this.props.location.search) {
+      return;
     }
 
-    return true;
-  }
-
-  componentDidUpdate(prevProps) {
     this.loadPhones()
   }
 
