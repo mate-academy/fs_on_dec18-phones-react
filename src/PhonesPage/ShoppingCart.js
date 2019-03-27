@@ -1,30 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { withShoppingCart } from '../ShoppingCartContext';
+import { removeItem } from '../ducks/shoppingCart';
 
-const ShoppingCart = ({ shoppingCart }) => (
+const ShoppingCart = ({ items, removeItem }) => (
   <div className="ShoppingCart">
     <h4>Shopping Cart</h4>
 
     <ul>
-      {shoppingCart.items.map(item => (
+      {items.map(item => (
         <li key={item.id}>
           {item.name}
 
-          <button onClick={() => shoppingCart.removeItem(item)}>-</button>
+          <button onClick={() => removeItem(item)}>-</button>
         </li>
       ))}
     </ul>
   </div>
 );
 
-const shoppingCartType = {
+ShoppingCart.propTypes = {
+  items: PropTypes.array.isRequired,
   removeItem: PropTypes.func.isRequired,
 };
 
-ShoppingCart.propTypes = {
-  shoppingCart: PropTypes.shape(shoppingCartType).isRequired,
-};
+const mapStateToProps = (state, ownProps) => ({
+  items: state.shoppingCart
+});
 
-export default withShoppingCart(ShoppingCart);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  removeItem(item) {
+    const action = removeItem(item);
+    dispatch(action)
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShoppingCart);
