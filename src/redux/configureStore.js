@@ -1,7 +1,11 @@
 import { createStore } from 'redux';
 
 
-const rootReducer = (state = {}, action) => {
+const defaultState = {
+  message: 'asdasd'
+};
+
+const rootReducer = (state = defaultState, action) => {
   return state;
 };
 
