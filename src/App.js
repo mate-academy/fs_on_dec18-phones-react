@@ -37,4 +37,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+export default withRouter(
+  connect(mapStateToProps)(App)
+)
