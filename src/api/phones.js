@@ -1,7 +1,7 @@
-const BASE_URL = 'https://mate-academy.github.io/phone-catalogue-static';
+const BASE_URL = 'https://mate-academy.github.io/phone-catalogue-static/api';
 
 export const getAll = async ({ orderBy, query }) => {
-  const response = await fetch(`${BASE_URL}/phones/phones.json`);
+  const response = await fetch(`${BASE_URL}/phones.json`);
   const phones = await response.json();
   const pattern = new RegExp(query, 'i');
 

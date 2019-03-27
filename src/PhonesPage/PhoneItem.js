@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { withShoppingCart } from '../ShoppingCartContext';
+import { addItem } from '../ducks/shoppingCart';
 import { BASE_IMG_URL } from '../config';
 
-const PhoneItem = ({ phone, phoneUrl, shoppingCart }) => (
+const PhoneItem = ({ phone, phoneUrl, addItem }) => (
   <li className="thumbnail">
     <span>### {phone.age}</span>
 
@@ -15,7 +16,7 @@ const PhoneItem = ({ phone, phoneUrl, shoppingCart }) => (
     <div className="phones__btn-buy-wrapper">
       <button
         className="btn btn-success"
-        onClick={() => shoppingCart.addItem(phone)}
+        onClick={addItem}
       >
         Add
       </button>
@@ -27,4 +28,11 @@ const PhoneItem = ({ phone, phoneUrl, shoppingCart }) => (
   </li>
 );
 
-export default withShoppingCart(PhoneItem);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  addItem() {
+    const action = addItem(ownProps.phone);
+    dispatch(action);
+  }
+});
+
+export default connect(null, mapDispatchToProps)(PhoneItem);

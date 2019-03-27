@@ -1,4 +1,4 @@
-const CHANGE_MESSAGE = 'phones-app/message/CHANGE_MESSAGE';
+const CHANGE_MESSAGE = 'PhonesApp/Message/CHANGE_MESSAGE';
 
 const reducer = (state = '', action) => {
   switch (action.type) {

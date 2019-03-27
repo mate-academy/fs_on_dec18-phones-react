@@ -1,14 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import PhonesCatalog from './PhonesCatalog';
 import Filter from './Filter';
 import ShoppingCart from './ShoppingCart';
-import { ShoppingCartContext } from '../ShoppingCartContext';
 
 import { getAll as getAllPhones } from '../api/phones';
 
-export default class PhonesPage extends React.Component {
-  static contextType = ShoppingCartContext;
-
+class PhonesPage extends React.Component {
   state = {
     phones: [],
   };
@@ -43,7 +42,7 @@ export default class PhonesPage extends React.Component {
         <div className="row">
           <div className="col-md-2" data-element="sidebar">
             <section>
-              <h3>{this.context.items.length} items in Basket</h3>
+              <h3>{this.props.items.length} items in Basket</h3>
               <Filter />
             </section>
 
@@ -66,3 +65,9 @@ export default class PhonesPage extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  items: state.shoppingCart,
+});
+
+export default connect(mapStateToProps)(PhonesPage);
