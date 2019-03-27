@@ -1,25 +1,19 @@
 import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import messageReducer from '../ducks/message';
 
-
-const defaultState = {
-  message: 'asdasd'
-};
-
-const rootReducer = (state = defaultState, action) => {
-  switch (action.type) {
-    case 'CHANGE_MESSAGE':
-      return {
-        ...state,
-        message: action.payload,
-      };
-
-    default:
-      return state;
-  }
+const rootReducer = (state, action) => {
+  return {
+    message: messageReducer(state.message, action),
+    // shoppingCart: shoppingCartReducer(state.shoppingCart, action)
+  };
 };
 
 const configureStore = () => {
-  const store = createStore(rootReducer);
+  const store = createStore(
+    rootReducer,
+    composeWithDevTools()
+  );
 
   return store;
 };

@@ -4,6 +4,7 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 
 import PhoneDetailsPage from './PhoneDetailsPage';
 import PhonesPage from './PhonesPage';
+import * as messageActions from './ducks/message';
 
 import './App.css';
 
@@ -27,7 +28,6 @@ const App = ({ messageFromStore, changeMessage }) => (
         </li>
       </ul>
     </header>
-
     <div className="container-fluid">
       <Switch>
         <Route exact path="/" render={() => <h1>Home Page</h1>} />
@@ -47,10 +47,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     changeMessage(message) {
-      dispatch({
-        type: 'CHANGE_MESSAGE',
-        payload: message,
-      });
+      const action = messageActions.changeMessage(message);
+      dispatch(action);
     }
   };
 };
