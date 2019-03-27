@@ -6,7 +6,16 @@ const defaultState = {
 };
 
 const rootReducer = (state = defaultState, action) => {
-  return state;
+  switch (action.type) {
+    case 'CHANGE_MESSAGE':
+      return {
+        ...state,
+        message: action.payload,
+      };
+
+    default:
+      return state;
+  }
 };
 
 const configureStore = () => {

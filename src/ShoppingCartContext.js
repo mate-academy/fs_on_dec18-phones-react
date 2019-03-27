@@ -12,20 +12,6 @@ export const withShoppingCart = OriginalComponent => {
   );
 };
 
-const connect = (OriginalComponent, mapStateToProps) => {
-  return (props) => {
-    <ReduxContext.Consumer>
-      {(store) => {
-        const extraProps = mapStateToProps(store.getState());
-
-        return (
-          <OriginalComponent {...props} {...extraProps} />
-        );
-      }}
-    </ReduxContext.Consumer>
-  }
-};
-
 export class ShoppingCartProvider extends React.Component {
   constructor(props) {
     super(props);

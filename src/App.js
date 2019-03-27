@@ -7,9 +7,16 @@ import PhonesPage from './PhonesPage';
 
 import './App.css';
 
-const App = ({ messageFromStore }) => (
+const App = ({ messageFromStore, changeMessage }) => (
   <div className="App">
     <h1>{ messageFromStore }</h1>
+    <input
+      type="text"
+      value={messageFromStore}
+      onChange={(event) => {
+        changeMessage(event.target.value)
+      }}
+    />
     <header style={{ padding: 10 }}>
       <ul className="nav nav-pills">
         <li role="presentation">
@@ -31,12 +38,24 @@ const App = ({ messageFromStore }) => (
   </div>
 );
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     messageFromStore: state.message,
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps)(App)
-)
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    changeMessage(message) {
+      dispatch({
+        type: 'CHANGE_MESSAGE',
+        payload: message,
+      });
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
