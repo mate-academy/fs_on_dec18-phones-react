@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import messageReducer from '../ducks/message';
 import shoppingCartReducer from '../ducks/shoppingCart';
@@ -9,6 +9,11 @@ const rootReducer = (state = {}, action) => {
     shoppingCart: shoppingCartReducer(state.shoppingCart, action)
   };
 };
+
+// const rootReducer = combineReducers({
+//   message: messageReducer,
+//   shoppingCart: shoppingCartReducer
+// });
 
 const configureStore = () => {
   const store = createStore(
