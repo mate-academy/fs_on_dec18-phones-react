@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import PhoneItem from './PhoneItem';
 
@@ -20,4 +21,10 @@ const PhonesCatalog = ({ phones, baseUrl }) => {
   );
 };
 
-export default PhonesCatalog;
+const mapState = (state) => {
+  return {
+    phones: state.phones
+  };
+};
+
+export default connect(mapState)(PhonesCatalog);

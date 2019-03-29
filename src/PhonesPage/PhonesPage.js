@@ -5,13 +5,9 @@ import PhonesCatalog from './PhonesCatalog';
 import Filter from './Filter';
 import ShoppingCart from './ShoppingCart';
 
-import { getAll as getAllPhones } from '../api/phones';
+import { loadPhones } from '../ducks/phones';
 
 class PhonesPage extends React.Component {
-  state = {
-    phones: [],
-  };
-
   componentDidMount() {
     this.loadPhones();
   }
@@ -25,18 +21,10 @@ class PhonesPage extends React.Component {
   }
 
   loadPhones = () => {
-    const params = new URLSearchParams(this.props.location.search);
-    const query = params.get('query') || '';
-    const orderBy = params.get('orderBy') || Filter.ORDER_BY_AGE;
-
-    getAllPhones({ orderBy, query }).then(phones => {
-      this.setState({ phones });
-    });
+    this.props.loadPhones(this.props.location)
   };
 
   render() {
-    console.log('render PhonesPage');
-
     return (
       <div className="PhonesPage">
         <div className="row">
@@ -56,7 +44,6 @@ class PhonesPage extends React.Component {
             <div data-component="pagination2" />
 
             <PhonesCatalog
-              phones={this.state.phones}
               baseUrl={this.props.match.path}
             />
           </div>
@@ -70,4 +57,11 @@ const mapStateToProps = (state) => ({
   items: state.shoppingCart,
 });
 
-export default connect(mapStateToProps)(PhonesPage);
+const mapDispatch = {
+  loadPhones: loadPhones
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatch
+)(PhonesPage);

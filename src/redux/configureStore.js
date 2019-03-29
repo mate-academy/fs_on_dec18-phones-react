@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import messageReducer from '../ducks/message';
 import shoppingCartReducer from '../ducks/shoppingCart';
+import phonesReducer from '../ducks/phones';
 
 // const rootReducer = (state = {}, action) => {
 //   return {
@@ -14,7 +15,8 @@ import shoppingCartReducer from '../ducks/shoppingCart';
 
 const rootReducer = combineReducers({
   message: messageReducer,
-  shoppingCart: shoppingCartReducer
+  shoppingCart: shoppingCartReducer,
+  phones: phonesReducer,
 });
 
 const configureStore = () => {
