@@ -16,7 +16,7 @@ const PhoneItem = ({ phone, phoneUrl, addItem }) => (
     <div className="phones__btn-buy-wrapper">
       <button
         className="btn btn-success"
-        onClick={addItem}
+        onClick={() => addItem(phone)}
       >
         Add
       </button>
@@ -28,11 +28,7 @@ const PhoneItem = ({ phone, phoneUrl, addItem }) => (
   </li>
 );
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  addItem() {
-    const action = addItem(ownProps.phone);
-    dispatch(action);
-  }
-});
-
-export default connect(null, mapDispatchToProps)(PhoneItem);
+export default connect(
+  null,
+  { addItem }
+)(PhoneItem);

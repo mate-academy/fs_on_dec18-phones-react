@@ -25,18 +25,11 @@ ShoppingCart.propTypes = {
   removeItem: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   items: state.shoppingCart
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  removeItem(item) {
-    const action = removeItem(item);
-    dispatch(action)
-  },
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { removeItem }
 )(ShoppingCart);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, NavLink, Switch, withRouter } from 'react-router-dom';
 
 import PhoneDetailsPage from './PhoneDetailsPage';
 import PhonesPage from './PhonesPage';
@@ -57,7 +57,9 @@ const mapDispatch = {
 //   };
 // };
 
-export default connect(
-  mapStateToProps,
-  mapDispatch
-)(App)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatch
+  )(App)
+);
