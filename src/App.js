@@ -38,22 +38,26 @@ const App = ({ messageFromStore, changeMessage }) => (
   </div>
 );
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     messageFromStore: state.message,
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    changeMessage(message) {
-      const action = messageActions.changeMessage(message);
-      dispatch(action);
-    }
-  };
+const mapDispatch = {
+  changeMessage: messageActions.changeMessage
 };
+
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//   return {
+//     changeMessage(...args) {
+//       const action = messageActions.changeMessage(...args);
+//       dispatch(action);
+//     }
+//   };
+// };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatch
 )(App)
